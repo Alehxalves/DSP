@@ -13,17 +13,20 @@ public class ManipularArquivos {
 
     public void readRange(String path, int begin, int end) throws Exception {
         Scanner entrada;
+        begin = begin < 0 ? 1 : begin;
         try {
             arquivo = new FileInputStream(path);
             entrada = new Scanner(arquivo, "UTF-8");
 
             if (!Objects.isNull(begin)) {
-                for (int i = 0; i < begin - 1; i++)
-                    entrada.nextLine();
+                if (begin > 1)
+                    for (int i = 1; i < begin; i++)
+                        entrada.nextLine();
+
                 System.out.println("--------------------------------------------------------");
-                while (entrada.hasNext() && end > 0) {
+                while (entrada.hasNext() && begin <= end) {
                     System.out.println(entrada.nextLine());
-                    end--;
+                    begin++;
                 }
                 System.out.println("--------------------------------------------------------");
             }
@@ -65,7 +68,7 @@ public class ManipularArquivos {
             destinatario.close();
             ps.close();
         } catch (Exception e) {
-            throw new Exception("Algum dos arquivos nao foi encontrado. ");
+            throw new Exception("Arquivo(s) nao encontrado. ");
         }
     }
 }

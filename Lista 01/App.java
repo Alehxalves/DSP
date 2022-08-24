@@ -2,7 +2,9 @@ import java.util.Scanner;
 import java.lang.ProcessBuilder;
 
 public class App {
-    private static final ManipularArquivos arq = new ManipularArquivos();
+    private final ManipularArquivos arq = new ManipularArquivos();
+    private Scanner userInputInt = new Scanner(System.in);
+    private Scanner userInputLine = new Scanner(System.in);
 
     public void clearConsole() throws Exception {
         String operatingSystem = System.getProperty("os.name");
@@ -12,73 +14,72 @@ public class App {
             new ProcessBuilder("clear").inheritIO().start().waitFor();
     }
 
-    public void run() throws Exception {
-        Scanner userInputInt = new Scanner(System.in);
-        Scanner userInputLine = new Scanner(System.in);
+    public void run(int option) throws Exception {
+        clearConsole();
+        if (option == 1) {
+            System.out.println("Digite o caminho do arquivo.");
 
+            String path = userInputLine.nextLine();
+            int begin, end;
+            try {
+                System.out.println("Digite o inteiro referente a linha de inicio: ");
+                begin = userInputInt.nextInt();
+                System.out.println("Digite o inteiro referente a linha final: ");
+                end = userInputInt.nextInt();
+
+            } catch (Exception e) {
+                throw new Exception("Apenas numeros nas linhas");
+            }
+            if (begin > end)
+                throw new Exception("Intervalo invalido, linha inicio > linha final");
+            arq.readRange(path, begin, end);
+        } else if (option == 2) {
+            System.out.println("Digite o caminho do arquivo.");
+            String arquivo = userInputLine.nextLine();
+            arq.read(arquivo);
+        } else if (option == 3) {
+            System.out.println("Digite o caminho do arquivo de origem.");
+            String rementente = userInputLine.nextLine();
+            System.out.println("Digite o caminho do arquivo de destino.");
+            String destinatario = userInputLine.nextLine();
+
+            arq.sobreescreverArquivo(rementente, destinatario);
+            arq.read(rementente);
+        }
+    }
+
+    public void menu() throws Exception {
         while (true) {
             try {
-                int option = 0;
+
                 System.out.println(
-                        "[1] Ler arquivo de texto.\n" +
-                                "[2] Copiar conteudo de arquivo x para arquivo y.\n" +
-                                "[3] Sair.");
+                        "[1] Ler arquivo de texto com intervalo.\n" +
+                                "[2] Ler arquivo completo\n" +
+                                "[3] Copiar conteudo de arquivo x para arquivo y.\n" +
+                                "[4] Sair.");
 
-                option = userInputInt.nextInt();
-                clearConsole();
+                String opcao = userInputInt.next();
 
-                if (option == 1) {
-                    System.out.println("Digite o caminho do arquivo.");
-                    String path = userInputLine.nextLine();
-                    int begin = 0, end = 0;
-                    try {
-                        System.out.println("Digite o inteiro referente a linha de inicio: ");
-                        begin = userInputInt.nextInt();
-                        System.out.println("Digite o inteiro referente a linha final: ");
-                        end = userInputInt.nextInt();
-                    } catch (Exception e) {
-                        throw new Exception("Apenas numeros nas linhas");
-                    }
-
-                    if (begin > end) {
-                        throw new Exception("Intervalo invalido, linha inicio > linha final");
-                    } else {
-                        clearConsole();
-                        arq.readRange(path, begin, end);
-                    }
-
-                } else if (option == 2) {
-                    System.out.println("Digite o caminho do arquivo remetente.");
-                    String rementente = userInputLine.nextLine();
-                    System.out.println("Digite o caminho do arquivo destinatario.");
-                    String destinatario = userInputLine.nextLine();
-
-                    clearConsole();
-                    arq.sobreescreverArquivo(rementente, destinatario);
-                    arq.read(rementente);
-                } else if (option == 3) {
+                if (Integer.parseInt(opcao) > 4 || Integer.parseInt(opcao) < 1)
+                    throw new Exception("Opcao invalida.");
+                else if (Integer.parseInt(opcao) == 4) {
                     break;
                 } else {
-                    throw new Exception("Opcao invalida.");
+                    clearConsole();
+                    run(Integer.parseInt(opcao));
                 }
             } catch (Exception e) {
                 clearConsole();
-                System.out.println("ERROR! ".concat(e.getMessage() + "\n"));
-                run();
+                System.out.println("ERROR ".concat(e.getMessage() + "\n"));
             }
-
         }
-        userInputInt.close();
+        clearConsole();
         userInputLine.close();
+        userInputInt.close();
     }
 
     public static void main(String[] args) throws Exception {
         App app = new App();
-
-        try {
-            app.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        app.menu();
     }
 }
