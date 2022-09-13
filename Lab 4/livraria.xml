@@ -1,0 +1,29 @@
+<livraria>
+  <livros>
+    <livro id="1">
+      <nome>Moby Dick</nome>
+      <autor>Herman Melville</autor>
+      <editora>Createspace </editora>
+    </livro>
+    <livro id="2">
+      <nome>Hamlet</nome>
+      <autor>William Shakespeare</autor>
+      <editora>Penguin-Companhia</editora>
+    </livro>
+    <livro id="3">
+      <nome>The Odyssey</nome>
+      <autor>Homer</autor>
+      <editora>W. W. Norton &amp; Company</editora>
+    </livro>
+    <livro id="4">
+      <nome>The Divine Comedy</nome>
+      <autor>Dante Alighieri</autor>
+      <editora>Bantam Classics</editora>
+    </livro>
+    <livro id="5">
+      <nome>The Return of the King</nome>
+      <autor>J. R. R. Tolkien</autor>
+      <editora>Recorded Books</editora>
+    </livro>
+  </livros>
+</livraria>
