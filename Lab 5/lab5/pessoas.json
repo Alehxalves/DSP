@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Alex Alves",
+        "cpf": "001.005.006-99",
+        "endereco": "Rua A"
+    },
+    {
+        "id": 2,
+        "name": "João Silva",
+        "cpf": "652.526.999-66",
+        "endereco": "Rua J"
+    },
+    {
+        "id": 3,
+        "name": "Maria Pereira",
+        "cpf": "556.666.555.63",
+        "endereco": "Rua M"
+    },
+    {
+        "id": 4,
+        "name": "Dante Alighieri",
+        "cpf": "666.666.666-66",
+        "endereco": "Rua D"
+    },
+    {
+        "id": 5,
+        "name": "J. R. R. Tolkien",
+        "cpf": "777.777.777.77",
+        "endereco": "Rua J"
+    }
+]
