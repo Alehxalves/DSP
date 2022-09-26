@@ -7,40 +7,6 @@ public class Character {
     private String spell;
     private String weapon;
 
-    public Character() {
-
-    }
-
-    public Character(int id, String nickname, Enum<Class> classe) {
-        this.id = id;
-        this.nickname = nickname;
-        this.classe = classe;
-        getSpellAndWeapon(classe);
-    }
-
-    private void getSpellAndWeapon(Enum<Class> classe) {
-        switch (classe.name()) {
-            case "KNIGHT":
-                this.spell = "RAGE";
-                this.weapon = "SWORD";
-                break;
-            case "MAGE":
-                this.spell = "FIRE SPELL";
-                this.weapon = "WAND";
-                break;
-            case "PALADIN":
-                this.spell = "DIVINE POWER";
-                this.weapon = "BOW";
-                break;
-            case "DRUID":
-                this.spell = "HEAL";
-                this.weapon = "STAFF";
-                break;
-            default:
-                break;
-        }
-    }
-
     public int getId() {
         return id;
     }
@@ -82,7 +48,10 @@ public class Character {
     }
 
     public String toString() {
-        return "{ id: " + getId() + ", nickname: " + getNickname() + ", classe: "
-                + getClasse() + ", spell: " + getSpell() + ", weapon: " + getWeapon() + " }";
+        return "{ id: " + getId()
+                + ", nickname: " + getNickname()
+                + ", class: " + getClasse()
+                + ", spell: " + getSpell()
+                + ", weapon: " + getWeapon() + " }";
     }
 }
