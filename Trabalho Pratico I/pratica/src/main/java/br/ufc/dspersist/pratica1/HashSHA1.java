@@ -3,6 +3,11 @@ package br.ufc.dspersist.pratica1;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
 
+/*
+ * Crie uma classe Java que recebe via linha de comando o nome de um arquivo qualquer 
+ * e exibe no console o hash SHA1 desse arquivo
+ */
+
 public class HashSHA1 {
 
     public static String getSha1Hash(String filePath) throws Exception {

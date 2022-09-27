@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/*
+ * Crie uma classe Java para cadastrar dados relacionados à entidade definida na questão 1. 
+ * A classe deve receber dados via teclado e os salvar em um arquivo JSON
+ */
+
 public class CreateCharacter {
     private List<Character> characters;
 

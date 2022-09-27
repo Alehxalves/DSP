@@ -12,8 +12,10 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 
-/**
- * JsonFileToXmlAndCsv
+/*
+ * Crie uma classe Java que recebe via linha de comando o nome de um arquivo
+ * qualquer em formato JSON
+ * e o converte para os formatos CSV e XML.
  */
 public class JsonFileToXmlAndCsv {
 

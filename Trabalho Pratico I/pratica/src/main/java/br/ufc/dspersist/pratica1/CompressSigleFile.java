@@ -7,6 +7,11 @@ import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/*
+ * Crie uma classe Java que recebe como entrada de teclado o nome de um arquivo qualquer
+ * e o compacta para o formato ZIP ou outro formato de compressão à sua escolha.
+ */
+
 public class CompressSigleFile {
 
     public static void compressSingleFile(String filePath) throws Exception {

@@ -1,5 +1,10 @@
 package br.ufc.dspersist.pratica1;
 
+/*
+ * Defina uma entidade principal com pelo menos 5 atributos e relacionada a um domínio de problema.
+ * Crie também uma classe Java para representá-la.
+ * A entidade deve estar relacionada a algo que você gosta bastante como: hobie, esporte, pet, alimentação etc...
+ */
 public class Character {
     private int id;
     private String nickname;
