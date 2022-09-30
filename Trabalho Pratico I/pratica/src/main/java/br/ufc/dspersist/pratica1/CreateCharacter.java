@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 /*
  * Crie uma classe Java para cadastrar dados relacionados à entidade definida na questão 1. 
@@ -82,6 +83,7 @@ public class CreateCharacter {
 
     public void saveCharactersInJson() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         if (getCharacters().size() == 0)
             return;
