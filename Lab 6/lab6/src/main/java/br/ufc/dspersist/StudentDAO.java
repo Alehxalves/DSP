@@ -9,18 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
-    private Connection posgreSQLConnection = PostgreSQLConnection.getConnection();
-
-    public Connection getConnection() throws SQLException {
-        if (posgreSQLConnection.isClosed()) {
-            return posgreSQLConnection = PostgreSQLConnection.getConnection();
-        } else {
-            return posgreSQLConnection;
-        }
-    }
 
     public boolean existsTable(String tableName) throws SQLException {
-        Connection connection = getConnection();
+        Connection connection = PostgreSQLConnection.getConnection();
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet resultSet = meta.getTables(null, null, tableName, new String[] { "TABLE" });
@@ -44,7 +35,7 @@ public class StudentDAO {
     public void createStudentTable() throws SQLException {
 
         if (!existsTable("students")) {
-            Connection connection = getConnection();
+            Connection connection = PostgreSQLConnection.getConnection();
             try {
 
                 String createSql = "create table students(id serial primary key, nome varchar(50), cpf varchar(14), "
@@ -75,7 +66,7 @@ public class StudentDAO {
     }
 
     public List<Student> getAllStudents() throws SQLException {
-        Connection connection = getConnection();
+        Connection connection = PostgreSQLConnection.getConnection();
         try {
             String selectStudents = "select * from students";
             PreparedStatement ps = connection.prepareStatement(selectStudents);
@@ -111,7 +102,7 @@ public class StudentDAO {
     }
 
     public void insertStudent(Student student) throws SQLException {
-        Connection connection = getConnection();
+        Connection connection = PostgreSQLConnection.getConnection();
         try {
             String insertStudent = "insert into students (nome, cpf, matricula, email, telefone) "
                     + "values (?, ?, ?, ?, ?)";

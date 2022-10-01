@@ -5,24 +5,9 @@ import java.util.Scanner;
 
 public class App {
 
-    private static StudentDAO studentDAO = new StudentDAO();
-
-    public static void listStudents() throws Exception {
-        List<Student> students = studentDAO.getAllStudents();
-
-        for (Student st : students) {
-            System.out.println(st.toString());
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-
-        if (!studentDAO.existsTable("students")) {
-            // Caso não exista a tabela de students no banco relacional este metodo cria a
-            // tabela
-            studentDAO.createStudentTable();
-        }
+        StudentController studentController = new StudentController();
 
         while (true) {
             try {
@@ -52,10 +37,11 @@ public class App {
                     System.out.print("Telefone do aluno: ");
                     student.setTelefone(scanner.nextLine());
 
-                    studentDAO.insertStudent(student);
-                    System.out.println("Aluno cadastrado!");
+                    studentController.insertStudent(student);
                 } else if (opcao == 2) {
-                    listStudents();
+                    List<Student> students = studentController.listAllStudents();
+                    for (Student student : students)
+                        System.out.println(student.toString());
                 } else if (opcao == 3) {
                     break;
                 } else {
